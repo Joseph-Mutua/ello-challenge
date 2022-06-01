@@ -16,11 +16,44 @@ const GetBookContent = () => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
 
+  pages.forEach((page, index) => {
+    
+    //TOKENS
+    let allTokensOnEachPage = page.tokens;
+    // console.log("WORD TOKENS ON EACH PAGE", allTokensOnEachPage);
+
+    // VALUES AND POSITIONS fo each individual words
+    let wordValues = [];
+    let tokensArray = [];
+    allTokensOnEachPage.forEach((token) => {
+      // VALUES
+      wordValues.push(token.value);
+
+      //POSITIONS
+      tokensArray.push(token.position);
+    });
+
+    for (let i = 0; i < allTokensOnEachPage.length; i++) {
+      let startidx = tokensArray[i][0];
+      let endidx = tokensArray[i][1];
+
+      let wordContent = page.content.slice(startidx, endidx);
+      console.log(
+        "WORD CONTENT",
+        wordContent,
+        "WORD VALUE",
+        wordValues[i],
+        "WORD VALUE POSITION",
+        tokensArray[i],
+      );
+    }
+  });
+
   return (
     <div className="container">
       {/* <div>{JSON.stringify(pages)}</div> */}
-      {pages.map((page) => {
-          return <h1>{page.content}</h1>
+      {pages.map((page, index) => {
+        return <h1 key={page.content + index}>{page.content}</h1>;
       })}
     </div>
   );
