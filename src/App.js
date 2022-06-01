@@ -6,7 +6,7 @@ import {
   from,
 } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
-
+import GetBookContent from "./Components/GetBookContent";
 import "./App.css";
 
 // Logic to handle GraphQL and Network errors
@@ -38,6 +38,7 @@ function App() {
     <div className="App">
       <ApolloProvider client={client}>
         <h3>Ello Coding Challenge</h3>
+        <GetBookContent/>
       </ApolloProvider>
     </div>
   );
