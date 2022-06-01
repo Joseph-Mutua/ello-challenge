@@ -8,6 +8,7 @@ const GetBookContent = () => {
 
   useEffect(() => {
     if (data) {
+      console.log(data);
       setPages(data.book.pages);
     }
   }, [data]);
@@ -17,7 +18,10 @@ const GetBookContent = () => {
 
   return (
     <div className="container">
-      <div>{JSON.stringify(pages)}</div>
+      {/* <div>{JSON.stringify(pages)}</div> */}
+      {pages.map((page) => {
+          return <h1>{page.content}</h1>
+      })}
     </div>
   );
 };
